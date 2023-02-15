@@ -1,0 +1,59 @@
+syntax="proto3";
+
+option go_package="./eCommerce";
+
+import "protos/client.proto";
+import "protos/product.proto";
+
+service OrderService {
+    rpc CreateOrder(CreateOrderRequest) returns (Order) {}
+    rpc GetOrderList (GetOrderListRequest) returns (GetOrderListResponse){}
+    rpc GetOrderById (GetOrderByIdRequest) returns (GetOrderByIdResponse){}
+}
+
+message OrderItem{
+    string product_id=1;
+    int32 quantity=2;
+}
+
+message Order {
+    string id = 1;
+    Client client = 2;
+    int32 total_price= 3;
+    string status = 4;
+    string created_at = 5;
+}
+
+message CreateOrderRequest{
+    string client_id = 1;
+    repeated OrderItem orderitems=2;
+}
+
+message GetOrderListRequest{
+    int32 offset=1;
+    int32 limit=2;
+}
+
+message GetOrderListResponse{
+    repeated Order orders=1;
+}
+
+message GetOrderByIdRequest{
+    string id=1;
+}
+
+message GetOrderByIdResponse{
+    Order order=1;
+    message Items{
+        Product product=1;
+        int32 quantity=2;
+    }
+    repeated Items items=2;
+    repeated OrderItem OrderItems=3;
+}
+
+message OrderInfo{
+    Order order=1;
+    repeated OrderItem orderitems=2;
+}
+

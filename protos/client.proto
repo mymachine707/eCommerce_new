@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+option go_package = "./eCommerce";
+
+// protos common.proto filedan import qilindi
+import "protos/common.proto";
+
+
+
+// The service definition.
+service ClientService {
+    rpc Ping (Empty) returns (Pong) {}
+    rpc CreateClient (CreateClientRequest) returns (Client) {}
+    rpc UpdateClient (UpdateClientRequest) returns (Client) {}
+    rpc DeleteClient (DeleteClientRequest) returns (Client) {}
+    rpc GetClientList (GetClientListRequest) returns (GetClientListResponse) {}
+    rpc GetClientById (GetClientByIDRequest) returns (Client) {} 
+
+    rpc Login (LoginAuthRequest) returns (TokenResponse) {}
+    rpc HasAccess (TokenRequest) returns (HasAccessResponse) {}
+
+    rpc CreateSuperUser (CreateSudoRequest) returns (Client) {}
+}
+
+message HasAccessResponse {
+    Client user = 1;
+    bool has_access = 2;
+}
+
+message LoginAuthRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message TokenResponse {
+    string Token = 1;
+}
+
+message TokenRequest {
+    string Token = 1;
+}
+
+// Client ...
+message Client { 
+    string id = 1;
+    string firstname = 2;
+    string lastname = 3;
+    string username = 4;
+    string phoneNumber = 5;
+    string address = 6;
+    string type =7;
+    string password = 8;
+    string created_at = 9;
+    string updated_at = 10;
+}
+
+message CreateClientRequest{
+    string firstname = 1;
+    string lastname = 2;
+    string username = 3;
+    string phoneNumber = 4;
+    string address = 5;
+    string type =6;
+    string password = 7;
+}
+
+
+message CreateSudoRequest{
+    string firstname = 1;
+    string lastname = 2;
+    string username = 3;
+    string phoneNumber = 4;
+    string address = 5;
+    string type =6;
+    string password = 7;
+}
+
+
+message UpdateClientRequest{
+    string id = 1;
+    string phoneNumber = 2;
+    string address = 3;
+    string password = 4;
+}
+
+message DeleteClientRequest{
+    string id = 1;
+}
+
+message GetClientListRequest{
+    int32 offset = 1;
+    int32 limit = 2;
+    string search = 3;
+}
+message GetClientListResponse{
+    repeated Client clients = 1;
+}
+
+message GetClientByIDRequest{
+    string id =1;
+}

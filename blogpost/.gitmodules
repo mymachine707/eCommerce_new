@@ -1,0 +1,9 @@
+[submodule "article_service"]
+	path = article_service
+	url = git@github.com:saidamir98/article_service.git
+[submodule "api_gateway"]
+	path = api_gateway
+	url = git@github.com:saidamir98/api_gateway.git
+[submodule "auth_service"]
+	path = auth_service
+	url = git@github.com:saidamir98/auth_service.git

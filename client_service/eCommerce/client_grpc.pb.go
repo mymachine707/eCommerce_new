@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.6.1
-// source: protos/client.proto
+// source: protos/clients.proto
 
 package eCommerce
 
@@ -18,7 +18,7 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// ClientServiceClient is the client API for ClientService service.
+// ClientServiceClient is the clients API for ClientService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ClientServiceClient interface {
@@ -33,15 +33,15 @@ type ClientServiceClient interface {
 	CreateSuperUser(ctx context.Context, in *CreateSudoRequest, opts ...grpc.CallOption) (*Client, error)
 }
 
-type clientServiceClient struct {
+type clientsServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
 func NewClientServiceClient(cc grpc.ClientConnInterface) ClientServiceClient {
-	return &clientServiceClient{cc}
+	return &clientsServiceClient{cc}
 }
 
-func (c *clientServiceClient) Ping(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Pong, error) {
+func (c *clientsServiceClient) Ping(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Pong, error) {
 	out := new(Pong)
 	err := c.cc.Invoke(ctx, "/ClientService/Ping", in, out, opts...)
 	if err != nil {
@@ -50,7 +50,7 @@ func (c *clientServiceClient) Ping(ctx context.Context, in *Empty, opts ...grpc.
 	return out, nil
 }
 
-func (c *clientServiceClient) CreateClient(ctx context.Context, in *CreateClientRequest, opts ...grpc.CallOption) (*Client, error) {
+func (c *clientsServiceClient) CreateClient(ctx context.Context, in *CreateClientRequest, opts ...grpc.CallOption) (*Client, error) {
 	out := new(Client)
 	err := c.cc.Invoke(ctx, "/ClientService/CreateClient", in, out, opts...)
 	if err != nil {
@@ -59,7 +59,7 @@ func (c *clientServiceClient) CreateClient(ctx context.Context, in *CreateClient
 	return out, nil
 }
 
-func (c *clientServiceClient) UpdateClient(ctx context.Context, in *UpdateClientRequest, opts ...grpc.CallOption) (*Client, error) {
+func (c *clientsServiceClient) UpdateClient(ctx context.Context, in *UpdateClientRequest, opts ...grpc.CallOption) (*Client, error) {
 	out := new(Client)
 	err := c.cc.Invoke(ctx, "/ClientService/UpdateClient", in, out, opts...)
 	if err != nil {
@@ -68,7 +68,7 @@ func (c *clientServiceClient) UpdateClient(ctx context.Context, in *UpdateClient
 	return out, nil
 }
 
-func (c *clientServiceClient) DeleteClient(ctx context.Context, in *DeleteClientRequest, opts ...grpc.CallOption) (*Client, error) {
+func (c *clientsServiceClient) DeleteClient(ctx context.Context, in *DeleteClientRequest, opts ...grpc.CallOption) (*Client, error) {
 	out := new(Client)
 	err := c.cc.Invoke(ctx, "/ClientService/DeleteClient", in, out, opts...)
 	if err != nil {
@@ -77,7 +77,7 @@ func (c *clientServiceClient) DeleteClient(ctx context.Context, in *DeleteClient
 	return out, nil
 }
 
-func (c *clientServiceClient) GetClientList(ctx context.Context, in *GetClientListRequest, opts ...grpc.CallOption) (*GetClientListResponse, error) {
+func (c *clientsServiceClient) GetClientList(ctx context.Context, in *GetClientListRequest, opts ...grpc.CallOption) (*GetClientListResponse, error) {
 	out := new(GetClientListResponse)
 	err := c.cc.Invoke(ctx, "/ClientService/GetClientList", in, out, opts...)
 	if err != nil {
@@ -86,7 +86,7 @@ func (c *clientServiceClient) GetClientList(ctx context.Context, in *GetClientLi
 	return out, nil
 }
 
-func (c *clientServiceClient) GetClientById(ctx context.Context, in *GetClientByIDRequest, opts ...grpc.CallOption) (*Client, error) {
+func (c *clientsServiceClient) GetClientById(ctx context.Context, in *GetClientByIDRequest, opts ...grpc.CallOption) (*Client, error) {
 	out := new(Client)
 	err := c.cc.Invoke(ctx, "/ClientService/GetClientById", in, out, opts...)
 	if err != nil {
@@ -95,7 +95,7 @@ func (c *clientServiceClient) GetClientById(ctx context.Context, in *GetClientBy
 	return out, nil
 }
 
-func (c *clientServiceClient) Login(ctx context.Context, in *LoginAuthRequest, opts ...grpc.CallOption) (*TokenResponse, error) {
+func (c *clientsServiceClient) Login(ctx context.Context, in *LoginAuthRequest, opts ...grpc.CallOption) (*TokenResponse, error) {
 	out := new(TokenResponse)
 	err := c.cc.Invoke(ctx, "/ClientService/Login", in, out, opts...)
 	if err != nil {
@@ -104,7 +104,7 @@ func (c *clientServiceClient) Login(ctx context.Context, in *LoginAuthRequest, o
 	return out, nil
 }
 
-func (c *clientServiceClient) HasAccess(ctx context.Context, in *TokenRequest, opts ...grpc.CallOption) (*HasAccessResponse, error) {
+func (c *clientsServiceClient) HasAccess(ctx context.Context, in *TokenRequest, opts ...grpc.CallOption) (*HasAccessResponse, error) {
 	out := new(HasAccessResponse)
 	err := c.cc.Invoke(ctx, "/ClientService/HasAccess", in, out, opts...)
 	if err != nil {
@@ -113,7 +113,7 @@ func (c *clientServiceClient) HasAccess(ctx context.Context, in *TokenRequest, o
 	return out, nil
 }
 
-func (c *clientServiceClient) CreateSuperUser(ctx context.Context, in *CreateSudoRequest, opts ...grpc.CallOption) (*Client, error) {
+func (c *clientsServiceClient) CreateSuperUser(ctx context.Context, in *CreateSudoRequest, opts ...grpc.CallOption) (*Client, error) {
 	out := new(Client)
 	err := c.cc.Invoke(ctx, "/ClientService/CreateSuperUser", in, out, opts...)
 	if err != nil {
@@ -389,5 +389,5 @@ var ClientService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "protos/client.proto",
+	Metadata: "protos/clients.proto",
 }

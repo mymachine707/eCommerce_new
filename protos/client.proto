@@ -8,22 +8,22 @@ import "protos/common.proto";
 
 
 // The service definition.
-service ClientService {
+service ClientsService {
     rpc Ping (Empty) returns (Pong) {}
-    rpc CreateClient (CreateClientRequest) returns (Client) {}
-    rpc UpdateClient (UpdateClientRequest) returns (Client) {}
-    rpc DeleteClient (DeleteClientRequest) returns (Client) {}
-    rpc GetClientList (GetClientListRequest) returns (GetClientListResponse) {}
-    rpc GetClientById (GetClientByIDRequest) returns (Client) {} 
+    rpc CreateClients (CreateClientsRequest) returns (Clients) {}
+    rpc UpdateClients (UpdateClientsRequest) returns (Clients) {}
+    rpc DeleteClients (DeleteClientsRequest) returns (Clients) {}
+    rpc GetClientsList (GetClientsListRequest) returns (GetClientsListResponse) {}
+    rpc GetClientsById (GetClientsByIDRequest) returns (Clients) {} 
 
     rpc Login (LoginAuthRequest) returns (TokenResponse) {}
     rpc HasAccess (TokenRequest) returns (HasAccessResponse) {}
 
-    rpc CreateSuperUser (CreateSudoRequest) returns (Client) {}
+    rpc CreateSuperUser (CreateSudoRequest) returns (Clients) {}
 }
 
 message HasAccessResponse {
-    Client user = 1;
+    Clients user = 1;
     bool has_access = 2;
 }
 
@@ -40,8 +40,8 @@ message TokenRequest {
     string Token = 1;
 }
 
-// Client ...
-message Client { 
+// Clients ...
+message Clients { 
     string id = 1;
     string firstname = 2;
     string lastname = 3;
@@ -54,7 +54,7 @@ message Client {
     string updated_at = 10;
 }
 
-message CreateClientRequest{
+message CreateClientsRequest{
     string firstname = 1;
     string lastname = 2;
     string username = 3;
@@ -76,26 +76,26 @@ message CreateSudoRequest{
 }
 
 
-message UpdateClientRequest{
+message UpdateClientsRequest{
     string id = 1;
     string phoneNumber = 2;
     string address = 3;
     string password = 4;
 }
 
-message DeleteClientRequest{
+message DeleteClientsRequest{
     string id = 1;
 }
 
-message GetClientListRequest{
+message GetClientsListRequest{
     int32 offset = 1;
     int32 limit = 2;
     string search = 3;
 }
-message GetClientListResponse{
-    repeated Client clients = 1;
+message GetClientsListResponse{
+    repeated Clients clientss = 1;
 }
 
-message GetClientByIDRequest{
+message GetClientsByIDRequest{
     string id =1;
 }

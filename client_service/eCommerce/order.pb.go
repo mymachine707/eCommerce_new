@@ -81,7 +81,7 @@ type Order struct {
 	unknownFields protoimpl.UnknownFields
 
 	Id         string  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Client     *Client `protobuf:"bytes,2,opt,name=client,proto3" json:"client,omitempty"`
+	Client     *Client `protobuf:"bytes,2,opt,name=clients,proto3" json:"clients,omitempty"`
 	TotalPrice int32   `protobuf:"varint,3,opt,name=total_price,json=totalPrice,proto3" json:"total_price,omitempty"`
 	Status     string  `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
 	CreatedAt  string  `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
@@ -159,7 +159,7 @@ type CreateOrderRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ClientId   string       `protobuf:"bytes,1,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
+	ClientId   string       `protobuf:"bytes,1,opt,name=clients_id,json=clientsId,proto3" json:"clients_id,omitempty"`
 	Orderitems []*OrderItem `protobuf:"bytes,2,rep,name=orderitems,proto3" json:"orderitems,omitempty"`
 }
 
@@ -630,7 +630,7 @@ var file_protos_order_proto_goTypes = []interface{}{
 	(*Product)(nil),                    // 10: Product
 }
 var file_protos_order_proto_depIdxs = []int32{
-	9,  // 0: Order.client:type_name -> Client
+	9,  // 0: Order.clients:type_name -> Client
 	0,  // 1: CreateOrderRequest.orderitems:type_name -> OrderItem
 	1,  // 2: GetOrderListResponse.orders:type_name -> Order
 	1,  // 3: GetOrderByIdResponse.order:type_name -> Order
@@ -657,7 +657,7 @@ func file_protos_order_proto_init() {
 	if File_protos_order_proto != nil {
 		return
 	}
-	file_protos_client_proto_init()
+	file_protos_clients_proto_init()
 	file_protos_product_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_protos_order_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
